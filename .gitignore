@@ -1,1 +1,4 @@
+# external packages
 node_modules/
+# ide personal config
+.vscode

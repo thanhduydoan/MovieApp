@@ -1,0 +1,41 @@
+.movieList {
+	margin-left: 20px;
+	color: white;
+}
+
+.movieList__poster {
+	width: 100%;
+	object-fit: contain;
+	max-height: 100px;
+	transition: transform 450ms;
+	margin-right: 10px;
+}
+
+.movieList__posters {
+	display: flex;
+	overflow-y: hidden;
+	overflow-x: scroll;
+	padding: 20px;
+}
+
+.movieList__posters::-webkit-scrollbar {
+	display: none;
+}
+
+.movieList__poster:hover {
+	transform: scale(1.08);
+	/* opacity: 1.2; */
+}
+
+.movieList__posterLarge {
+	max-height: 250px;
+}
+
+.movieList__posterLarge:hover {
+	transform: scale(1.09);
+	opacity: 1;
+}
+
+.movieList__youtube {
+	padding: "40px";
+}

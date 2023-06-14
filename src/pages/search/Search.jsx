@@ -9,13 +9,12 @@ const Search = () => {
 	const [query, setQuery] = useState("");
   const [searchInput, setSearchInput] = useState("");
 
-  // hàm click nút search
   const handleSearch = (e) => {
+    //ngăn chặn hành vi submit form mặc định
     e.preventDefault();
     setQuery(searchInput);
   };
 
-  // hàm click nút reset
   const handleReset = (e) => {
     e.preventDefault();
     setSearchInput("");

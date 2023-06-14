@@ -1,3 +1,4 @@
+//Tạo 1 biến lưu trữ các đường dẫn API
 const requests = {
     fetchTrending: `https://api.themoviedb.org/3/trending/all/week?api_key=0469acb94fe75afee08ef1bcd67c785d&language=en-US`,
 fetchNetflixOriginals: `https://api.themoviedb.org/3/discover/tv?api_key=0469acb94fe75afee08ef1bcd67c785d&with_network=123`,

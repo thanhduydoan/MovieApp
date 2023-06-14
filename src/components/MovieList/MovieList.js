@@ -3,12 +3,17 @@ import movieTrailer from "movie-trailer";
 import MovieDetail from "../MovieDetail/MovieDetail";
 import "./MovieList.css";
 
+//Các props của component bao gồm title: tiêu đề của danh sách phim.
+//fetchUrl: URL để truy vấn API để lấy danh sách phim.
+//isLargeRow: một boolean để hiển thị kích thước poster lớn hơn.
 function MovieLists({ title, fetchUrl, isLargeRow }) {
+//Danh sách các phim
   const [movies, setMovies] = useState([]);
+  //Phim được chọn để xem trailer
   const [selectingMovie, setSelectingMovie] = useState(null);
-
+  //ID của trailer tương ứng
   const [trailerId, setTralerId] = useState("");
-
+// lấy danh sách phim từ API khi component được mount hoặc fetchUrl thay đổi.
   useEffect(() => {
     async function fetchData() {
       const request = await fetch(fetchUrl);
@@ -18,16 +23,10 @@ function MovieLists({ title, fetchUrl, isLargeRow }) {
     }
     fetchData();
   }, [fetchUrl]);
-
-  const opts = {
-    height: "400",
-    width: "100%",
-    playerVars: {
-      autoplay: 1,
-    },
-  };
+//Khi click vào poster, phim tương ứng sẽ được chọn để xem trailer
   const handleClick = async (movie) => {
     setSelectingMovie(movie);
+	//lấy URL của trailer tương ứng và lưu trữ trailerId vào state.
     const url = await movieTrailer(movie?.original_name || movie?.title || "");
     if (url) {
       const urlParams = new URLSearchParams(new URL(url).search);
@@ -53,6 +52,7 @@ function MovieLists({ title, fetchUrl, isLargeRow }) {
           />
         ))}
       </div>
+	  {/* Khi một poster được click, nếu trailerId đã được lưu trữ, thì component MovieDetail sẽ được hiển thị để xem trailer. */}
       <div className="movieList__youtube">
         {!!selectingMovie && !!trailerId && (
           <MovieDetail movieData={selectingMovie} movieTrailer={trailerId} />

@@ -9,6 +9,7 @@ const Banner = (props) => {
       try {
         const response = await fetch('https://api.themoviedb.org/3/discover/tv?api_key=0469acb94fe75afee08ef1bcd67c785d&with_network=123');
         const data = await response.json();
+		// lấy ngẫu nhiên một bộ phim trong array
         if (data.results && data.results.length > 0) {
           const randomIndex = Math.floor(Math.random() * data.results.length - 1);
           setData(data.results[randomIndex]);

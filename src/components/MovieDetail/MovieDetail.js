@@ -1,7 +1,7 @@
 import React from "react";
 import YouTube from "react-youtube";
 import "./MovieDetail.css";
-// options cho video youtube
+// các thuộc tính của video
 const opts = {
   height: "400",
   width: "100%",
@@ -11,7 +11,7 @@ const opts = {
 };
 
 const MovieDetail = ({ movieData, movieTrailer }) => {
-  // destructure các field từ movieData object
+  // movieData và movieTrailer được chuyển vào từ component cha.
   const {
     release_date,
     title,
@@ -22,6 +22,7 @@ const MovieDetail = ({ movieData, movieTrailer }) => {
     poster_path,
   } = movieData;
 
+  //movieData được chuyển vào đúng, nó trả về một div rỗng.
   if (!movieData) {
     return <div></div>;
   }
@@ -36,7 +37,7 @@ const MovieDetail = ({ movieData, movieTrailer }) => {
         <p>{overview}</p>
       </div>
       <div className="movieDetailTrailer">
-        {/* hiển thị video nếu có movieTrailer */}
+        {/* hiển thị video nếu có movieTrailer  */}
         {movieTrailer && <YouTube videoId={movieTrailer} opts={opts} />}
         {/* hiển thị poster nếu ko có movieTrailer */}
         {!movieTrailer && (

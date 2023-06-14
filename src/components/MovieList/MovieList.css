@@ -24,7 +24,6 @@
 
 .movieList__poster:hover {
 	transform: scale(1.08);
-	/* opacity: 1.2; */
 }
 
 .movieList__posterLarge {

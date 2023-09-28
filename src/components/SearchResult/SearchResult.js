@@ -12,11 +12,11 @@ const SearchResult = ({ search }) => {
 
   // effect tìm movie. Nếu ko search thì setMovies để rỗng
   useEffect(() => {
-    async function fetchSearch () {
-     const request = await fetch(url)
-            const data = await request.json()
-			setMovies(data.results);
-			return request;
+    async function fetchSearch() {
+      const request = await fetch(url)
+      const data = await request.json()
+      setMovies(data.results);
+      return request;
     };
 
     if (search) {
@@ -28,39 +28,39 @@ const SearchResult = ({ search }) => {
 
   // useEffect để fetch trailer từ selectedMovie
   useEffect(() => {
-  async function fetchTrailer(movie) {
-    if (movie) {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=0469acb94fe75afee08ef1bcd67c785d&language=en-US`
-      ); // Sửa đường dẫn fetch API
-      const data = await response.json();
-      // Lọc ra các video có site là YouTube và type là Trailer hoặc Teaser
-      const trailers = data.results.filter(
-        (movie) =>
-          movie.site === "YouTube" &&
-          (movie.type === "Teaser" || movie.type === "Trailer")
-      );
-      console.log(trailers);
-      // Lấy key của video Trailer đầu tiên hoặc null nếu không có
-      if (trailers.length > 0) { 
-  const trailer = trailers.find(
-    (video) => video.type === "Trailer" || video.key
-  );
-  if (trailer) {
-    setVideoTrailer(trailer.key);
-    console.log(trailer.key);
-  } else {
-    setVideoTrailer(null);
-  }
-} else {
-  setVideoTrailer(null);
-}
-}
-}
+    async function fetchTrailer(movie) {
+      if (movie) {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=c0cf4110241b44ed8625fe1ae1805076&language=en-US`
+        ); // Sửa đường dẫn fetch API
+        const data = await response.json();
+        // Lọc ra các video có site là YouTube và type là Trailer hoặc Teaser
+        const trailers = data.results.filter(
+          (movie) =>
+            movie.site === "YouTube" &&
+            (movie.type === "Teaser" || movie.type === "Trailer")
+        );
+        console.log(trailers);
+        // Lấy key của video Trailer đầu tiên hoặc null nếu không có
+        if (trailers.length > 0) {
+          const trailer = trailers.find(
+            (video) => video.type === "Trailer" || video.key
+          );
+          if (trailer) {
+            setVideoTrailer(trailer.key);
+            console.log(trailer.key);
+          } else {
+            setVideoTrailer(null);
+          }
+        } else {
+          setVideoTrailer(null);
+        }
+      }
+    }
 
-  // Fetch trailer từ selectedMovie
-  fetchTrailer(selectedMovie);
-}, [selectedMovie]);
+    // Fetch trailer từ selectedMovie
+    fetchTrailer(selectedMovie);
+  }, [selectedMovie]);
 
   // Xử lý sự kiện khi người dùng click vào poster để xem trailer
   const handleClick = (movie) => {

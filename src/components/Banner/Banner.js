@@ -2,27 +2,27 @@ import React, { useEffect, useState } from 'react';
 import './Banner.css';
 
 const Banner = (props) => {
-  const [data, setData] = useState([]);
+	const [data, setData] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('https://api.themoviedb.org/3/discover/tv?api_key=0469acb94fe75afee08ef1bcd67c785d&with_network=123');
-        const data = await response.json();
-		// lấy ngẫu nhiên một bộ phim trong array
-        if (data.results && data.results.length > 0) {
-          const randomIndex = Math.floor(Math.random() * data.results.length - 1);
-          setData(data.results[randomIndex]);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, []);
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const response = await fetch('https://api.themoviedb.org/3/discover/tv?api_key=c0cf4110241b44ed8625fe1ae1805076&with_network=123');
+				const data = await response.json();
+				// lấy ngẫu nhiên một bộ phim trong array
+				if (data.results && data.results.length > 0) {
+					const randomIndex = Math.floor(Math.random() * data.results.length - 1);
+					setData(data.results[randomIndex]);
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		fetchData();
+	}, []);
 
-  return (
-    <header
+	return (
+		<header
 			className="banner"
 			style={{
 				backgroundSize: "cover",
@@ -43,7 +43,7 @@ const Banner = (props) => {
 			</div>
 			<div className="banner__fadeBottom" />
 		</header>
-  );
+	);
 };
 
 export default Banner;
